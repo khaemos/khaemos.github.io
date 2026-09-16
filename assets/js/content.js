@@ -6,7 +6,7 @@ window.KHAE_DATA = {
       title: "Optics",
       kicker: "Light • Refraction • Diffraction",
       description: "Experimental work in refraction, diffraction and optical visualization, including ferrocell-based magnetic field visualization.",
-      projects: ["ferrocell-visualizer", "diffraction-experiments", "lens-refraction"]
+      projects: ["the-nature-of-light", "ferrocell-visualizer", "diffraction-experiments", "lens-refraction"]
     },
     {
       slug: "vlf",
@@ -95,6 +95,32 @@ window.KHAE_DATA = {
   ],
 
   projects: [
+    {
+      slug: "the-nature-of-light",
+      title: "The Nature of Light",
+      domain: "optics",
+      year: "2026",
+      featured: true,
+      summary: "Experimental observation of electromagnetic oscillations at 12 kHz using an electric oscillator, tuned receiver and vacuum chamber.",
+      tags: ["Optics", "Electromagnetic Waves", "12 kHz", "Vacuum", "Experimental Physics"],
+      status: "Documented",
+      hero: "assets/projects/the-nature-of-light/hero.png",
+      heroFallback: "assets/projects/the-nature-of-light/hero.svg",
+      media: [
+        { src: "assets/projects/the-nature-of-light/fig-1.png", label: "Fig. 1", caption: "Electric oscillator generating electromagnetic oscillations at 12 kHz." },
+        { src: "assets/projects/the-nature-of-light/fig-2.png", label: "Fig. 2", caption: "Tuned electric receiver used for detection." },
+        { src: "assets/projects/the-nature-of-light/fig-3.png", label: "Fig. 3", caption: "Receiver placed inside a vacuum chamber while the transmitter remains outside." }
+      ],
+      sections: [
+        ["The nature of light", "When an electromagnetic oscillation is generated, it propagates through space as a wave known as light. Spanning from invisible to visible frequencies, these longitudinal waves are the carriers of energy throughout the universe and compose the electromagnetic spectrum."],
+        ["Experimental observation", "To observe these waves experimentally, an electric oscillator (Fig. 1) is used to generate electromagnetic oscillations at 12 kHz. Because the human eye cannot see this frequency and the ear cannot hear it as it is not an acoustic wave traveling through air, a tuned electric receiver (Fig. 2) must be used for detection."],
+        ["Vacuum chamber", "This phenomenon can be further verified by placing the receiver inside a vacuum chamber, despite the complete absence of air molecules, the electromagnetic waves continue to propagate (Fig. 3)."],
+        ["Light's medium", "This experiment exposes a fundamental characteristic of electromagnetic radiation, it does not propagate through the air. If the vacuum chamber is empty, how do the waves reach the receiver? Here, we encounter the most controversial debate in the history of science, the nature of light's medium, famously termed as the ether."],
+        ["Visible frequencies", "When this medium is stimulated to vibrate between 400 THz and 790 THz, our eyes detect these frequencies as visible light. Like all electromagnetic radiation, visible light propagates through the medium at a tremendous velocity, governed by the medium's elasticity and density."],
+        ["Related phenomena", "These properties can be observed in any setup where small electromagnetic oscillations are present. In an induction coil, for example, light phenomena occur due to the constant electrical stimulation of air molecules at the electrode tips (see the transformers section for these experiments). Another example is sonoluminescence, where the implosion of a microscopic bubble triggers rapid oscillations that propagate at visible frequencies, producing a distinct flash of light."],
+        ["Next experiment", "Now let's make an experiment to see how these waves can alter their trajectory, phenomena known as deflection, refraction and diffraction. Continue to: Ferrocell electromagnetic diffraction."]
+      ]
+    },
     {
       slug: "rcgs",
       title: "RCGS — RFID Gate & Console System",
