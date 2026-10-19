@@ -130,7 +130,7 @@ window.KHAE_DATA = {
       summary: "Experiments with circular and square ferrocells to visualize how magnetic nanoparticle organization influences visible light.",
       tags: ["Optics", "Ferrocells", "Magnetism", "Ferrofluid", "Light"],
       status: "Documented",
-      hero: "assets/images/domains/optics.png",
+      hero: "assets/projects/magnetic-field-and-light/fig_1.jpg",
       sections: []
     },
     {
