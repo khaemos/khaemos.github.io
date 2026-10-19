@@ -1,0 +1,1 @@
+Place your four images in this folder as fig_1.png through fig_4.png, or fig_1.jpg through fig_4.jpg. PNG is preferred when both exist. Target dimensions: 1103 x 617. Placeholder shown until images are added.

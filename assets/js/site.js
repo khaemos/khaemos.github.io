@@ -24,7 +24,7 @@ function renderProject(){
   const doc=document.querySelector('#project-document'); if(!doc)return;
   if(slug==='the-nature-of-light'){
     doc.innerHTML=`
-      <h1>The nature of light</h1>
+      <h1>Transmission of Light</h1>
       <div class="project-cover"><img src="assets/projects/the-nature-of-light/hero.png" alt="Light passing through a prism in an optics laboratory"></div>
       <p>When an electromagnetic oscillation is generated, it propagates through space as a wave known as light. Spanning from invisible to visible frequencies, these longitudinal waves are the carriers of energy throughout the universe and compose the electromagnetic spectrum.</p>
       <p>To observe these waves experimentally, an electric oscillator <strong>(Fig. 1)</strong> is used to generate electromagnetic oscillations at 12 kHz.</p>
@@ -37,7 +37,22 @@ function renderProject(){
       <p>When this medium is stimulated to vibrate between 400 THz and 790 THz, our eyes detect these frequencies as visible light. Like all electromagnetic radiation, visible light propagates through the medium at a tremendous velocity, governed by the medium's elasticity and density.</p>
       <p>These properties can be observed in any setup where small electromagnetic oscillations are present. In an induction coil, for example, light phenomena occur due to the constant electrical stimulation of air molecules at the electrode tips <strong>(see the transformers section for these experiments)</strong>. Another example is sonoluminescence, where the implosion of a microscopic bubble triggers rapid oscillations that propagate at visible frequencies, producing a distinct flash of light.</p>
       <p>Now let's make an experiment to see how these waves can alter their trajectory, phenomena known as deflection, refraction and diffraction.</p>
-      <p class="continue-project"><strong>Continue to (Ferrocell electromagnetic diffraction)</strong></p>`;
+      <p class="continue-project"><strong>Continue to <a href="project.html?slug=magnetic-field-and-light">Magnetic Field and Light →</a></strong></p>`;
+  } else if(slug==='magnetic-field-and-light'){
+    const assetRoot='assets/projects/magnetic-field-and-light/';
+    const figure=(n,alt)=>`<figure class="document-figure"><picture><source srcset="${assetRoot}fig_${n}.png" type="image/png"><img src="${assetRoot}fig_${n}.jpg" alt="${alt}" onerror="this.onerror=null;this.src='${assetRoot}placeholder.svg'" loading="lazy"></picture><figcaption>Fig. ${n}</figcaption></figure>`;
+    doc.innerHTML=`
+      <h1>Magnetic Field and Light</h1>
+      <p>Design and construction of ferrocells with different geometries, including circular and square configurations, to investigate the interaction between magnetic fields, ferrofluid nanoparticles, and visible light of different wavelengths.</p>
+      ${figure(1,'Circular and square ferrocell configurations')}
+      <p>The ferrofluid contains microscopic magnetic nanoparticles suspended in a carrier liquid. When exposed to an external magnetic field, these particles experience magnetic forces and torques, causing them to organize into structures influenced by the field's strength and spatial distribution.</p>
+      <p>This magnetic organization changes the optical properties of the ferrofluid. As light passes through the cell, it interacts with the resulting nanoparticle structures through scattering, absorption, and transmission, producing visible patterns that reflect the magnetic organization of the medium.</p>
+      ${figure(2,'Magnetic nanoparticle organization and optical patterns')}
+      <p>Both permanent magnets and electromagnets produce similar optical patterns when generating comparable magnetic field distributions. In both cases, the magnetic field interacts with the suspended nanoparticles, influencing their spatial organization and consequently the way light propagates through the ferrofluid.</p>
+      <p>Illumination with different wavelengths of visible light produces variations in the observed patterns. Different wavelengths interact differently with the magnetically organized nanoparticle structures, affecting light scattering, absorption, transmission, and the resulting optical contrast.</p>
+      ${figure(3,'Optical patterns under different illumination wavelengths')}
+      <p>These experiments demonstrate how magnetic field distributions can be translated into observable optical patterns through the interaction between magnetic nanoparticles and electromagnetic radiation.</p>
+      ${figure(4,'Observed magnetic-field-dependent optical patterns')}`;
   } else {
     doc.innerHTML=`<h1>${p.title}</h1>${p.hero?`<div class="project-cover">${safeImage(p.hero,p.heroFallback||'')}</div>`:''}<p class="project-lead">${p.summary||''}</p>${(p.sections||[]).map(([h,body])=>`<h2>${h}</h2><p>${body}</p>`).join('')}`;
   }
