@@ -48,3 +48,6 @@ Then replace the placeholder `<div class="project-media">` logic with image mark
 - Add the final CV PDF.
 - Replace placeholder project media with your real photos and diagrams.
 - Review wording for projects that are still under development.
+
+## Project hero images
+Each project page checks `assets/projects/<project-slug>/hero.png` and displays it immediately after the title, using the same cover layout as Transmission of Light. If absent, the image container is removed. Project cards follow the same rule. Recommended image dimensions: 1103 x 617 px.
