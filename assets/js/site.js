@@ -9,7 +9,7 @@ function domainCard(d, index){
   return `<a class="domain-card" href="domain.html?slug=${d.slug}"><div class="domain-visual">${safeImage(cover)}<div class="domain-code">${String(index+1).padStart(2,'0')} / ${d.kicker}</div></div><div class="card-body"><div class="card-kicker">${d.kicker}</div><h3>${d.title}</h3><p>${d.description}</p></div></a>`;
 }
 function projectCard(p){
-  const media=p.hero?`${safeImage(p.hero,p.heroFallback||'')}`:'';
+  const media=`<img src="assets/projects/${p.slug}/hero.png" alt="" loading="lazy" onerror="this.closest('.project-media').remove()">`;
   return `<a class="project-card" href="project.html?slug=${p.slug}"><div class="project-media">${media}</div><div class="card-body"><div class="card-kicker">${p.year||''} • ${p.status||''}</div><h3>${p.title}</h3><p>${p.summary}</p><div class="tags">${(p.tags||[]).slice(0,4).map(t=>`<span class="tag">${t}</span>`).join('')}</div></div></a>`;
 }
 function renderHome(){ const dg=document.querySelector('#domain-grid'); if(dg) dg.innerHTML=data.domains.map(domainCard).join(''); const pg=document.querySelector('#featured-grid'); if(pg) pg.innerHTML=data.projects.filter(p=>p.featured).slice(0,6).map(projectCard).join(''); }
@@ -22,10 +22,13 @@ function renderProject(){
   const crumb=document.querySelector('#project-breadcrumb');
   if(crumb) crumb.innerHTML=`<a href="projects.html">Projects</a> &gt; <a href="domain.html?slug=${d?.slug||''}">${d?.title||''}</a> &gt; ${p.title}`;
   const doc=document.querySelector('#project-document'); if(!doc)return;
+  // Every project uses its own hero.png, and missing files are hidden rather than replaced.
+  const heroPath=`assets/projects/${p.slug}/hero.png`;
+  const heroMarkup=`<div class="project-cover"><img src="${heroPath}" alt="${p.title} project hero" onerror="this.closest('.project-cover').remove()"></div>`;
   if(slug==='the-nature-of-light'){
     doc.innerHTML=`
       <h1>Transmission of Light</h1>
-      <div class="project-cover"><img src="assets/projects/the-nature-of-light/hero.png" alt="Light passing through a prism in an optics laboratory"></div>
+      ${heroMarkup}
       <p>When an electromagnetic oscillation is generated, it propagates through space as a wave known as light. Spanning from invisible to visible frequencies, these longitudinal waves are the carriers of energy throughout the universe and compose the electromagnetic spectrum.</p>
       <p>To observe these waves experimentally, an electric oscillator <strong>(Fig. 1)</strong> is used to generate electromagnetic oscillations at 12 kHz.</p>
       <figure class="document-figure"><img src="assets/projects/the-nature-of-light/fig-1.png" alt="Electric oscillator at 12 kHz"><figcaption>Fig. 1</figcaption></figure>
@@ -38,11 +41,29 @@ function renderProject(){
       <p>These properties can be observed in any setup where small electromagnetic oscillations are present. In an induction coil, for example, light phenomena occur due to the constant electrical stimulation of air molecules at the electrode tips <strong>(see the transformers section for these experiments)</strong>. Another example is sonoluminescence, where the implosion of a microscopic bubble triggers rapid oscillations that propagate at visible frequencies, producing a distinct flash of light.</p>
       <p>Now let's make an experiment to see how these waves can alter their trajectory, phenomena known as deflection, refraction and diffraction.</p>
       <p class="continue-project"><strong>Continue to <a href="project.html?slug=magnetic-field-and-light">Magnetic Field and Light →</a></strong></p>`;
+  } else if(slug==='vlf-multistage-receiver'){
+    const root='assets/projects/vlf-multistage-receiver/';
+    const figure=(n,alt)=>`<figure class="document-figure"><img src="${root}fig-${n}.png" alt="${alt}" loading="lazy" onerror="this.onerror=null;this.src='${root}placeholder.svg'"><figcaption>Fig. ${n}</figcaption></figure>`;
+    doc.innerHTML=`
+      <h1>1–20 kHz Multi-Stage Receiver</h1>
+      ${heroMarkup}
+      <p><strong>Design and experimental evaluation of a Very Low Frequency (VLF) receiver</strong> developed to detect and analyze low-frequency electromagnetic signals.</p>
+      <p>The receiver consists of a multistage analog circuit incorporating a high-impedance antenna input, an RC high-pass filter, a JFET source-follower buffer, a passive band-pass filter, and a common-emitter transistor amplifier.</p>
+      <p>The JFET buffer minimizes loading of the receiving element, while the band-pass filter attenuates unwanted frequency components outside the intended 2–20 kHz range. The final amplification stage increases the signal amplitude for subsequent acquisition and analysis.</p>
+      <h2>Experimental Procedure</h2>
+      <p>The receiver was assembled and tested to investigate electromagnetic activity within the VLF spectrum. Signals captured by the antenna were conditioned through the analog filtering and amplification stages before being recorded using a Software-Defined Radio (SDR) system.</p>
+      <p>The recorded signals were examined in the frequency and time domains to observe spectral activity, signal variations, and interference within the monitored frequency range.</p>
+      ${figure(1,'VLF receiver experimental setup')}
+      <h2>Results</h2>
+      <p>The experiment demonstrated the use of a multistage analog receiver combined with SDR-based recording and spectrum analysis to investigate low-frequency electromagnetic signals.</p>
+      ${figure(2,'Recorded VLF signals and spectrum analysis')}
+      <p>The recorded data provided a basis for examining the receiver's response and identifying spectral components within the monitored VLF range.</p>`;
   } else if(slug==='magnetic-field-and-light'){
     const assetRoot='assets/projects/magnetic-field-and-light/';
     const figure=(n,alt)=>`<figure class="document-figure"><picture><source srcset="${assetRoot}fig_${n}.png" type="image/png"><img src="${assetRoot}fig_${n}.jpg" alt="${alt}" onerror="this.onerror=null;this.src='${assetRoot}placeholder.svg'" loading="lazy"></picture><figcaption>Fig. ${n}</figcaption></figure>`;
     doc.innerHTML=`
       <h1>Magnetic Field and Light</h1>
+      ${heroMarkup}
       <p>Design and construction of ferrocells with different geometries, including circular and square configurations, to investigate the interaction between magnetic fields, ferrofluid nanoparticles, and visible light of different wavelengths.</p>
       ${figure(1,'Circular and square ferrocell configurations')}
       <p>The ferrofluid contains microscopic magnetic nanoparticles suspended in a carrier liquid. When exposed to an external magnetic field, these particles experience magnetic forces and torques, causing them to organize into structures influenced by the field's strength and spatial distribution.</p>
@@ -54,7 +75,7 @@ function renderProject(){
       <p>These experiments demonstrate how magnetic field distributions can be translated into observable optical patterns through the interaction between magnetic nanoparticles and electromagnetic radiation.</p>
       ${figure(4,'Observed magnetic-field-dependent optical patterns')}`;
   } else {
-    doc.innerHTML=`<h1>${p.title}</h1>${p.hero?`<div class="project-cover">${safeImage(p.hero,p.heroFallback||'')}</div>`:''}<p class="project-lead">${p.summary||''}</p>${(p.sections||[]).map(([h,body])=>`<h2>${h}</h2><p>${body}</p>`).join('')}`;
+    doc.innerHTML=`<h1>${p.title}</h1>${heroMarkup}<p class="project-lead">${p.summary||''}</p>${(p.sections||[]).map(([h,body])=>`<h2>${h}</h2><p>${body}</p>`).join('')}`;
   }
 }
 document.addEventListener('DOMContentLoaded',()=>{const page=document.body.dataset.page;if(page==='home')renderHome();if(page==='work')renderWork();if(page==='projects')renderProjects();if(page==='domain')renderDomain();if(page==='project')renderProject();const menu=document.querySelector('#menu-btn'),links=document.querySelector('#nav-links');if(menu&&links)menu.addEventListener('click',()=>{links.style.display=links.style.display==='flex'?'none':'flex';links.style.position='absolute';links.style.top='74px';links.style.left='12px';links.style.right='12px';links.style.padding='18px';links.style.flexDirection='column';links.style.alignItems='flex-start';links.style.background='rgba(5,11,15,.98)';links.style.border='1px solid rgba(163,190,202,.18)';links.style.borderRadius='14px';});});
