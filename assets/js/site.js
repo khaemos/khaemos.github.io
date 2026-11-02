@@ -38,6 +38,22 @@ function renderProject(){
       <p>These properties can be observed in any setup where small electromagnetic oscillations are present. In an induction coil, for example, light phenomena occur due to the constant electrical stimulation of air molecules at the electrode tips <strong>(see the transformers section for these experiments)</strong>. Another example is sonoluminescence, where the implosion of a microscopic bubble triggers rapid oscillations that propagate at visible frequencies, producing a distinct flash of light.</p>
       <p>Now let's make an experiment to see how these waves can alter their trajectory, phenomena known as deflection, refraction and diffraction.</p>
       <p class="continue-project"><strong>Continue to <a href="project.html?slug=magnetic-field-and-light">Magnetic Field and Light →</a></strong></p>`;
+  } else if(slug==='vlf-multistage-receiver'){
+    const root='assets/projects/vlf-multistage-receiver/';
+    const figure=(n,alt)=>`<figure class="document-figure"><img src="${root}fig-${n}.png" alt="${alt}" loading="lazy" onerror="this.onerror=null;this.src='${root}placeholder.svg'"><figcaption>Fig. ${n}</figcaption></figure>`;
+    doc.innerHTML=`
+      <h1>1–20 kHz Multi-Stage Receiver</h1>
+      <p><strong>Design and experimental evaluation of a Very Low Frequency (VLF) receiver</strong> developed to detect and analyze low-frequency electromagnetic signals.</p>
+      <p>The receiver consists of a multistage analog circuit incorporating a high-impedance antenna input, an RC high-pass filter, a JFET source-follower buffer, a passive band-pass filter, and a common-emitter transistor amplifier.</p>
+      <p>The JFET buffer minimizes loading of the receiving element, while the band-pass filter attenuates unwanted frequency components outside the intended 2–20 kHz range. The final amplification stage increases the signal amplitude for subsequent acquisition and analysis.</p>
+      <h2>Experimental Procedure</h2>
+      <p>The receiver was assembled and tested to investigate electromagnetic activity within the VLF spectrum. Signals captured by the antenna were conditioned through the analog filtering and amplification stages before being recorded using a Software-Defined Radio (SDR) system.</p>
+      <p>The recorded signals were examined in the frequency and time domains to observe spectral activity, signal variations, and interference within the monitored frequency range.</p>
+      ${figure(1,'VLF receiver experimental setup')}
+      <h2>Results</h2>
+      <p>The experiment demonstrated the use of a multistage analog receiver combined with SDR-based recording and spectrum analysis to investigate low-frequency electromagnetic signals.</p>
+      ${figure(2,'Recorded VLF signals and spectrum analysis')}
+      <p>The recorded data provided a basis for examining the receiver's response and identifying spectral components within the monitored VLF range.</p>`;
   } else if(slug==='magnetic-field-and-light'){
     const assetRoot='assets/projects/magnetic-field-and-light/';
     const figure=(n,alt)=>`<figure class="document-figure"><picture><source srcset="${assetRoot}fig_${n}.png" type="image/png"><img src="${assetRoot}fig_${n}.jpg" alt="${alt}" onerror="this.onerror=null;this.src='${assetRoot}placeholder.svg'" loading="lazy"></picture><figcaption>Fig. ${n}</figcaption></figure>`;

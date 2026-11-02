@@ -6,7 +6,7 @@ window.KHAE_DATA = {
       title: "Optics",
       kicker: "Light • Refraction • Diffraction",
       description: "Experimental work in refraction, diffraction and optical visualization, including ferrocell-based magnetic field visualization.",
-      projects: ["the-nature-of-light", "magnetic-field-and-light", "ferrocell-visualizer", "diffraction-experiments", "lens-refraction"]
+      projects: ["the-nature-of-light", "magnetic-field-and-light", "diffraction-experiments", "lens-refraction"]
     },
     {
       slug: "vlf",
@@ -130,7 +130,7 @@ window.KHAE_DATA = {
       summary: "Experiments with circular and square ferrocells to visualize how magnetic nanoparticle organization influences visible light.",
       tags: ["Optics", "Ferrocells", "Magnetism", "Ferrofluid", "Light"],
       status: "Documented",
-      hero: "assets/projects/magnetic-field-and-light/fig_4.png",
+      hero: "assets/images/domains/optics.png",
       sections: []
     },
     {
@@ -209,21 +209,6 @@ window.KHAE_DATA = {
       ]
     },
     {
-      slug: "ferrocell-visualizer",
-      title: "Ferrocell Visualizer",
-      domain: "optics",
-      year: "2026",
-      featured: true,
-      summary: "Experimental optical platform for observing ferrofluid field patterns with controlled illumination.",
-      tags: ["Optics", "Magnetics", "Experimental Physics", "3D Printing"],
-      status: "Documented",
-      sections: [
-        ["Purpose", "Visualize magnetic field behavior through optical interaction with a ferrofluid cell."],
-        ["System", "Custom enclosure, controlled lighting geometry and interchangeable magnetic configurations."],
-        ["Engineering focus", "Experimental setup design, optics, magnetics and rapid prototyping."]
-      ]
-    },
-    {
       slug: "vlf-multistage-receiver",
       title: "1–20 kHz Multi-Stage Receiver",
       domain: "vlf",
@@ -231,8 +216,8 @@ window.KHAE_DATA = {
       featured: false,
       summary: "Experimental VLF receiver platform built around staged amplification and filtering.",
       tags: ["VLF", "Analog", "Receiver", "Filtering"],
-      status: "Documentation in progress",
-      sections: [["Overview", "Multi-stage receiver architecture covering the 1–20 kHz experimental range."]]
+      status: "Documented",
+      sections: [["Overview", "Design and experimental evaluation of a Very Low Frequency (VLF) receiver developed to detect and analyze low-frequency electromagnetic signals."]]
     },
     {
       slug: "rf-broadband-platform",
